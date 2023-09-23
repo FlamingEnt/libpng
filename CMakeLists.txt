@@ -66,21 +66,17 @@ set(DFA_XTRA ""
     CACHE FILEPATH "File containing extra configuration settings")
 
 # Allow the users to configure the following build options.
-option(PNG_SHARED "Build libpng as a shared lib" ON)
+option(PNG_SHARED "Build libpng as a shared lib" OFF)
 option(PNG_STATIC "Build libpng as a static lib" ON)
 option(PNG_FRAMEWORK "Build libpng as a Mac OS X framework" OFF)
-option(PNG_EXECUTABLES "Build libpng executables" ON)
-option(PNG_TESTS "Build libpng tests" ON)
+option(PNG_EXECUTABLES "Build libpng executables" OFF)
+option(PNG_TESTS "Build libpng tests" OFF)
 option(PNG_DEBUG "Enable debug output" OFF)
 option(PNG_HARDWARE_OPTIMIZATIONS "Enable hardware optimizations" ON)
 
-# Allow the users to specify a location of zlib.
-# Useful if zlib is being built alongside this as a sub-project.
-option(PNG_BUILD_ZLIB "Custom zlib location, else find_package is used" OFF)
-if(NOT PNG_BUILD_ZLIB)
-  find_package(ZLIB REQUIRED)
-  include_directories(${ZLIB_INCLUDE_DIRS})
-endif()
+# Location of zlib and library name
+set(ZLIB_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/../zlib)
+set(ZLIB_LIBRARIES zlibstatic)
 
 if(UNIX AND NOT APPLE AND NOT BEOS AND NOT HAIKU AND NOT EMSCRIPTEN)
   find_library(M_LIBRARY m)
