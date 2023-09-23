@@ -363,7 +363,6 @@ endif()
 
 if(PNG_SHARED)
   add_library(png_shared SHARED ${libpng_sources})
-  add_dependencies(png_shared png_genfiles)
   list(APPEND PNG_LIBRARY_TARGETS png_shared)
   set_target_properties(png_shared PROPERTIES
                         OUTPUT_NAME "${PNG_SHARED_OUTPUT_NAME}"
@@ -387,7 +386,6 @@ endif()
 
 if(PNG_STATIC)
   add_library(png_static STATIC ${libpng_sources})
-  add_dependencies(png_static png_genfiles)
   list(APPEND PNG_LIBRARY_TARGETS png_static)
   set_target_properties(png_static PROPERTIES
                         OUTPUT_NAME "${PNG_STATIC_OUTPUT_NAME}"
@@ -397,7 +395,6 @@ endif()
 
 if(PNG_FRAMEWORK)
   add_library(png_framework SHARED ${libpng_sources})
-  add_dependencies(png_framework png_genfiles)
   list(APPEND PNG_LIBRARY_TARGETS png_framework)
   set_target_properties(png_framework PROPERTIES
                         FRAMEWORK TRUE
